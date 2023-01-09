@@ -32,7 +32,7 @@
             r:10,
             x:cvs.width/2,
             y:paddle.y-10,
-            s:3,
+            s:7,
             dx:3,
             dy:-3
         }
@@ -96,11 +96,16 @@
         function ResetBall(){
             ball.x = cvs.width/2;
             ball.y = paddle.y-10;
-            ball.dx = 3*(Math.random()*2-1);
-            ball.dy = -3;
+            ball.dx = 1;
+            ball.dy = -1;
+        }
+
+        function SpeedUp(){
+            ball.s++;
         }
 
         function Draw(){
+            ctx.clearRect(0, 0, cvs.width, cvs.height);
             DrawBall();
             DrawPaddle();
         }
@@ -113,10 +118,8 @@
         }
 
         function Main(){
-            ctx.clearRect(0, 0, cvs.width, cvs.height);
             Update();
             Draw();
-            requestAnimationFrame(Main);
         }
 
         document.addEventListener("keydown", function(event){
@@ -137,7 +140,7 @@
                 return;}
         });
 
-        Main();
+        setInterval(Main, 1000/120);
     </script>
 </body>
 </html>
