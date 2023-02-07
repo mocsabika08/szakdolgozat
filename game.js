@@ -5,17 +5,28 @@ const paddle = {
     height:20,
     x:cvs.width/2 - 150/2,
     y:cvs.height - 20 - 50,
-    dx:5
+    dx:7
 }
 const ball = {
     r:10,
     x:cvs.width/2,
     y:paddle.y-10,
-    s:3,
-    dx:3,
-    dy:-3
+    s:6,
+    dx:0,
+    dy:-6
+}
+const brick = {
+    row:3,
+    column:5,
+    width:55,
+    height:20,
+    offsetLeft:20,
+    offsetTop:20,
+    fill:"",
+    stroke:""
 }
 
+let bricks = [];
 let leftArrow = false;
 let rightArrow = false;
 let lives = 3;
@@ -66,6 +77,8 @@ function PaddleCollision(){
     if (ball.y>paddle.y && ball.y<paddle.y+paddle.height && ball.x>paddle.x && ball.x<paddle.x+paddle.width){
         let point = ball.x - (paddle.x+paddle.width/2);
         point = point / (paddle.width/2);
+        console.log(event);
+        debugger;
         let a = point * (Math.PI/3);
         ball.dx = ball.s * Math.sin(a);
         ball.dy = -ball.s * Math.cos(a);
@@ -75,8 +88,8 @@ function PaddleCollision(){
 function ResetBall(){
     ball.x = cvs.width/2;
     ball.y = paddle.y-10;
-    ball.dx = 3*(Math.random()*2-1);
-    ball.dy = -3;
+    ball.dx = 0;
+    ball.dy = -6;
 }
 
 function Draw(){
