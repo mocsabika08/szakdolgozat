@@ -18,60 +18,20 @@ const ball = {
 const brick = {
     row:3,
     column:5,
-    width:55,
+    width:100,
     height:20,
-    offsetLeft:20,
+    marginTop:20,
+    offsetLeft:60,
     offsetTop:20,
     fill:"",
     stroke:""
 }
 
+let run = true;
 let bricks = [];
 let leftArrow = false;
 let rightArrow = false;
 let lives = 3;
-
-function DrawPaddle(){
-    ctx.fillStyle = "black";
-    ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
-    ctx.strokeStyle = "white";
-    ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
-}
-
-function DrawBall(){
-    ctx.beginPath();
-    ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI*2);
-    ctx.fillStyle = "black";
-    ctx.fill();
-    ctx.strokeStyle = "white";
-    ctx.stroke();
-    ctx.closePath();
-}
-
-function MovePaddle(){
-    if (rightArrow && paddle.x+paddle.width < cvs.width)
-        paddle.x += paddle.dx;
-    if (leftArrow && paddle.x > 0)
-        paddle.x -= paddle.dx;
-}
-
-function MoveBall(){
-    ball.x += ball.dx;
-    ball.y += ball.dy;
-}
-
-function WallCollision(){
-    if (ball.x+ball.r > cvs.width || ball.x-ball.r < 0){
-        ball.dx = -ball.dx;
-    }
-    if (ball.y-ball.r < 0){
-        ball.dy = -ball.dy;
-    }
-    if (ball.y+ball.r > cvs.height){
-        lives--;
-        ResetBall();
-    }
-}
 
 function PaddleCollision(){
     if (ball.y>paddle.y && ball.y<paddle.y+paddle.height && ball.x>paddle.x && ball.x<paddle.x+paddle.width){
@@ -85,30 +45,89 @@ function PaddleCollision(){
     }
 }
 
-function ResetBall(){
+function PaddleMove(){
+    if (rightArrow && paddle.x+paddle.width < cvs.width)
+        paddle.x += paddle.dx;
+    if (leftArrow && paddle.x > 0)
+        paddle.x -= paddle.dx;
+}
+
+function PaddleDraw(){
+    ctx.fillStyle = "black";
+    ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+    ctx.strokeStyle = "white";
+    ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
+}
+
+function BallMove(){
+    ball.x += ball.dx;
+    ball.y += ball.dy;
+}
+
+function BallDraw(){
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI*2);
+    ctx.fillStyle = "black";
+    ctx.fill();
+    ctx.strokeStyle = "white";
+    ctx.stroke();
+    ctx.closePath();
+}
+
+function BallReset(){
     ball.x = cvs.width/2;
     ball.y = paddle.y-10;
     ball.dx = 0;
     ball.dy = -6;
 }
 
+function WallCollision(){
+    if (ball.x+ball.r > cvs.width || ball.x-ball.r < 0){
+        ball.dx = -ball.dx;
+    }
+    if (ball.y-ball.r < 0){
+        ball.dy = -ball.dy;
+    }
+    if (ball.y+ball.r > cvs.height){
+        lives--;
+        BallReset();
+    }
+}
+
+function BricksReset(){
+    for (let i = 0; i < brick.row; i++){
+        bricks[i] = [];
+        for (let j = 0; j < brick.column; j++){
+            bricks[j][i]={
+                x:j*(brick.width+brick.offsetLeft)+brick.offsetLeft,
+                y:i*(brick.hieght+brick.offsetTop)+brick.offsetTop+brick.marginTop,
+                status:true
+            };
+        }
+    }
+}
+
 function Draw(){
-    DrawBall();
-    DrawPaddle();
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
+    BallDraw();
+    PaddleDraw();
 }
 
 function Update(){
-    MovePaddle();
+    PaddleMove();
     WallCollision();
     PaddleCollision();
-    MoveBall();
+    BallMove();
+}
+
+function GameLoop(){
+    Update();
+    Draw();
+    requestAnimationFrame(GameLoop);
 }
 
 function Main(){
-    ctx.clearRect(0, 0, cvs.width, cvs.height);
-    Update();
-    Draw();
-    requestAnimationFrame(Main);
+    
 }
 
 document.addEventListener("keydown", function(event){
