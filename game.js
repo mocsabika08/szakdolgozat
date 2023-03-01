@@ -21,24 +21,24 @@ const brick = {
     width:100,
     height:20,
     marginTop:20,
-    offsetLeft:60,
+    offsetLeft:50,
     offsetTop:20,
-    fill:"",
-    stroke:""
+    fill:"black",
+    stroke:"white"
 }
 
 let run = true;
 let bricks = [];
 let leftArrow = false;
 let rightArrow = false;
-let lives = 3;
+let lives = 1;
+let score = 0;
+let level = 0;
 
 function PaddleCollision(){
     if (ball.y>paddle.y && ball.y<paddle.y+paddle.height && ball.x>paddle.x && ball.x<paddle.x+paddle.width){
         let point = ball.x - (paddle.x+paddle.width/2);
         point = point / (paddle.width/2);
-        console.log(event);
-        debugger;
         let a = point * (Math.PI/3);
         ball.dx = ball.s * Math.sin(a);
         ball.dy = -ball.s * Math.cos(a);
@@ -57,6 +57,11 @@ function PaddleDraw(){
     ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
     ctx.strokeStyle = "white";
     ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
+}
+
+function PaddleReset(){
+    paddle.x = cvs.width/2 - 150/2;
+    paddle.y = cvs.height - 20 - 50;
 }
 
 function BallMove(){
@@ -94,16 +99,80 @@ function WallCollision(){
     }
 }
 
-function BricksReset(){
+function BrickReset(){
     for (let i = 0; i < brick.row; i++){
         bricks[i] = [];
         for (let j = 0; j < brick.column; j++){
-            bricks[j][i]={
+            bricks[i][j]={
                 x:j*(brick.width+brick.offsetLeft)+brick.offsetLeft,
-                y:i*(brick.hieght+brick.offsetTop)+brick.offsetTop+brick.marginTop,
+                y:i*(brick.height+brick.offsetTop)+brick.offsetTop+brick.marginTop,
                 status:true
             };
         }
+    }
+}
+
+function BrickDraw(){
+    for (let i = 0; i < brick.row; i++){
+        for (let j = 0; j < brick.column; j++){
+            if(bricks[i][j].status){
+                ctx.fillStyle = "black";
+                ctx.fillRect(bricks[i][j].x, bricks[i][j].y, brick.width, brick.height);
+                ctx.strokeStyle = "white";
+                ctx.strokeRect(bricks[i][j].x, bricks[i][j].y, brick.width, brick.height);
+            }
+        }
+    }
+}
+
+function BrickCollision(){
+    for (let i = 0; i < brick.row; i++){
+        for (let j = 0; j < brick.column; j++){
+            let temp = bricks[i][j];
+            if (temp.status){
+                if (ball.x+ball.r>temp.x && ball.x-ball.r<temp.x+brick.width && ball.y+ball.r>temp.y && ball.y-ball.r<temp.y+brick.height){
+                    bricks[i][j].status = false;
+                    ball.dy = -ball.dy;
+                    score++;
+                }
+            }
+            
+        }
+    }
+}
+
+function Loose(){
+    run = false;
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
+    ctx.fillStyle = "black";
+    ctx.fillRect(295, 255, 210, 90);
+    ctx.strokeStyle = "white";
+    ctx.strokeRect(295, 255, 210, 90);
+    ctx.fillStyle = "white"
+    ctx.font = "30px Comic Sans MS";
+    ctx.fillText("VESZTETTÉL", 303, 310);
+}
+
+function Win(){
+    BrickReset();
+    BallReset();
+    PaddleReset();
+    ball.s += 0.5;
+    brick.row++;
+    run = true;
+}
+
+function RunCheck(){
+    if (lives <= 0)
+        Loose();
+    else{
+        for (let i = 0; i < brick.row; i++){
+            for (let j = 0; j < brick.column; j++){
+                if (bricks[i][j].status)
+                    return;
+            }
+        }
+        Win();
     }
 }
 
@@ -111,23 +180,28 @@ function Draw(){
     ctx.clearRect(0, 0, cvs.width, cvs.height);
     BallDraw();
     PaddleDraw();
+    BrickDraw();
 }
 
 function Update(){
     PaddleMove();
     WallCollision();
     PaddleCollision();
+    BrickCollision();
     BallMove();
 }
 
 function GameLoop(){
     Update();
     Draw();
-    requestAnimationFrame(GameLoop);
+    RunCheck();
+    if (run)
+        requestAnimationFrame(GameLoop);
 }
 
 function Main(){
-    
+    BrickReset();
+    GameLoop();
 }
 
 document.addEventListener("keydown", function(event){
