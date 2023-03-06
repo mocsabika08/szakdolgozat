@@ -11,29 +11,29 @@ const ball = {
     r:10,
     x:cvs.width/2,
     y:paddle.y-10,
-    s:6,
+    s:5,
     dx:0,
     dy:-6
 }
 const brick = {
-    row:3,
+    row:4,
     column:5,
     width:100,
     height:20,
     marginTop:20,
     offsetLeft:50,
     offsetTop:20,
-    fill:"black",
-    stroke:"white"
 }
 
 let run = true;
 let bricks = [];
+let lives = 3;
+let score = 0;
+let level = 1;
+let multiplier = 1;
 let leftArrow = false;
 let rightArrow = false;
-let lives = 1;
-let score = 0;
-let level = 0;
+
 
 function PaddleCollision(){
     if (ball.y>paddle.y && ball.y<paddle.y+paddle.height && ball.x>paddle.x && ball.x<paddle.x+paddle.width){
@@ -42,6 +42,7 @@ function PaddleCollision(){
         let a = point * (Math.PI/3);
         ball.dx = ball.s * Math.sin(a);
         ball.dy = -ball.s * Math.cos(a);
+        multiplier = 1;
     }
 }
 
@@ -87,15 +88,15 @@ function BallReset(){
 }
 
 function WallCollision(){
-    if (ball.x+ball.r > cvs.width || ball.x-ball.r < 0){
+    if (ball.x+ball.r > cvs.width || ball.x-ball.r < 0)
         ball.dx = -ball.dx;
-    }
-    if (ball.y-ball.r < 0){
+    if (ball.y-ball.r < 0)
         ball.dy = -ball.dy;
-    }
     if (ball.y+ball.r > cvs.height){
         lives--;
+        document.getElementById("lives").innerHTML = "Életek: " + lives;
         BallReset();
+        PaddleReset();
     }
 }
 
@@ -118,7 +119,14 @@ function BrickDraw(){
             if(bricks[i][j].status){
                 ctx.fillStyle = "black";
                 ctx.fillRect(bricks[i][j].x, bricks[i][j].y, brick.width, brick.height);
-                ctx.strokeStyle = "white";
+                if (i < 4)
+                    ctx.strokeStyle = "lime";
+                else if (i < 6)
+                    ctx.strokeStyle = "yellow";
+                else if (i < 8)
+                    ctx.strokeStyle = "orange";
+                else
+                    ctx.strokeStyle = "red";
                 ctx.strokeRect(bricks[i][j].x, bricks[i][j].y, brick.width, brick.height);
             }
         }
@@ -133,10 +141,11 @@ function BrickCollision(){
                 if (ball.x+ball.r>temp.x && ball.x-ball.r<temp.x+brick.width && ball.y+ball.r>temp.y && ball.y-ball.r<temp.y+brick.height){
                     bricks[i][j].status = false;
                     ball.dy = -ball.dy;
-                    score++;
+                    score += level * multiplier * lives * 5;
+                    document.getElementById("score").innerHTML = "Pontszám: " + score;
+                    multiplier += 1;
                 }
             }
-            
         }
     }
 }
@@ -154,12 +163,15 @@ function Loose(){
 }
 
 function Win(){
+    if (ball.s <= 8)
+        ball.s += 1;
+    if (brick.row <= 10)
+        brick.row++;
+    level++;
+    document.getElementById("level").innerHTML = "Szint: " + level;
     BrickReset();
     BallReset();
     PaddleReset();
-    ball.s += 0.5;
-    brick.row++;
-    run = true;
 }
 
 function RunCheck(){
