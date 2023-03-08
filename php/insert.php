@@ -1,14 +1,18 @@
 <?php
-    $table = $_POST['table'];
-    $level = $_POST['level'];
-    $score = $_POST['score'];
-    $sql = "INSERT INTO `$table` (`username`, `level`, `score`) VALUES ('admin', '$level', '$score')";
-    if ($conn -> query($sql))
-    {
-        echo "data inserted";
-    }
-    else 
-    {
-        echo "failed";
-    }
+	include 'connect.php';
+
+	$username = $_POST['username'];
+	$level = $_POST['level'];
+	$score = $_POST['score'];
+
+	$sql = "INSERT INTO `classic` ( `username`, `level`, `score`) VALUES ('$username', '$level', '$score')";
+
+	if (mysqli_query($conn, $sql)){
+		echo json_encode(array("statusCode"=>200));
+	} 
+	else{
+		echo json_encode(array("statusCode"=>201));
+	}
+    
+	mysqli_close($conn);
 ?>

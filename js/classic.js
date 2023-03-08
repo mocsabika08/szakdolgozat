@@ -1,5 +1,5 @@
 var script = document.createElement('script');
-script.src = 'jquery-3.6.3.min.js';
+script.src = 'js/jquery-3.6.3.min.js';
 document.getElementsByTagName('head')[0].appendChild(script);
 
 const cvs = document.getElementById("arkanoid");
@@ -153,13 +153,24 @@ function BrickCollision(){
     }
 }
 
-function Loose(){
+function Lose(){
     run = false;
 
-    /* const xhttp = new XMLHttpRequest();
-    xhttp.onload = function(){
-
-    } */
+    $(document).ready(function(){
+        $.ajax({
+            type: "POST",
+            url: 'insert.php',
+            data:{
+                username : "admin",
+                level : level,
+                score : score
+            },
+            success: function(data)
+            {
+                alert("success!");
+            }
+        });
+    });
 
     ctx.clearRect(0, 0, cvs.width, cvs.height);
     ctx.fillStyle = "black";
@@ -185,7 +196,7 @@ function Win(){
 
 function RunCheck(){
     if (lives <= 0)
-        Loose();
+        Lose();
     else{
         for (let i = 0; i < brick.row; i++){
             for (let j = 0; j < brick.column; j++){

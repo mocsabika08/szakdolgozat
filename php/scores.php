@@ -3,7 +3,7 @@
 <?php
     include "connect.php";
 
-    $sql = "SELECT * FROM classic";
+    $sql = "SELECT * FROM `classic`";
     $result = $conn -> query($sql);
 ?>
 
@@ -28,7 +28,7 @@
 </table>
 
 <?php
-    $sql = "SELECT * FROM time";
+    $sql = "SELECT * FROM `time`";
     $result = $conn -> query($sql);
 ?>
 

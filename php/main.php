@@ -1,7 +1,7 @@
 <h2>Főmenü</h2>
 
-Üdvözöllek az Arkanoid játékomban!
+<p>Üdvözöllek az Arkanoid játékomban!</p>
 
-A játék során egy labdát kell a levegőben tartanod, míg az lerombolja az összes téglát. Két játékmód között választhatsz:
+<p>A játék során egy labdát kell a levegőben tartanod, míg az lerombolja az összes téglát. Két játékmód között választhatsz:</p>
 
-A klasszikus módban szintről szintre lépve egyre több téglát kell lerombolni, valamint a labda sebessége is egyre gyorsabb.
+<p>A klasszikus módban szintről szintre lépve egyre több téglát kell lerombolni, valamint a labda sebessége is egyre gyorsabb.</p>
