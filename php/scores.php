@@ -13,7 +13,6 @@
     <head>
         <th>Játékos</th>
         <th>Szint</th>
-        <th>Életek</th>
         <th>Pontszám</th>
     </head>
     <?php
