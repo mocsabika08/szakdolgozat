@@ -34,7 +34,6 @@ let multiplier = 1;
 let leftArrow = false;
 let rightArrow = false;
 
-
 function PaddleCollision(){
     if (ball.y>paddle.y && ball.y<paddle.y+paddle.height && ball.x>paddle.x && ball.x<paddle.x+paddle.width){
         let point = ball.x - (paddle.x+paddle.width/2);
