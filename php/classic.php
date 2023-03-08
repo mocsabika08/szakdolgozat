@@ -2,9 +2,6 @@
 
 <?php
     include "connect.php";
-
-    $sql = "SELECT * FROM classic";
-    $result = $conn -> query($sql);
 ?>
 
 <div id="score">Pontszám: 0</div>
