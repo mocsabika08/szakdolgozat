@@ -1,3 +1,7 @@
+var script = document.createElement('script');
+script.src = 'jquery-3.6.3.min.js';
+document.getElementsByTagName('head')[0].appendChild(script);
+
 const cvs = document.getElementById("arkanoid");
 const ctx = cvs.getContext("2d");
 const paddle = {
@@ -151,6 +155,12 @@ function BrickCollision(){
 
 function Loose(){
     run = false;
+
+    /* const xhttp = new XMLHttpRequest();
+    xhttp.onload = function(){
+
+    } */
+
     ctx.clearRect(0, 0, cvs.width, cvs.height);
     ctx.fillStyle = "black";
     ctx.fillRect(295, 255, 210, 90);
