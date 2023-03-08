@@ -1,4 +1,9 @@
 <?php
+    function ClassicAdd($username, $level, $score)
+    {
+        $conn -> query("INSERT INTO `classic` (`username`, `level`, `lives`, `score`) VALUES ('$username', '$level', '$score')");
+    }
+
     $server="localhost";
     $user="root";
     $password="";

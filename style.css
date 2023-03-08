@@ -9,6 +9,11 @@
     display:inline;
 }
 
+table
+{
+    display: inline;
+}
+
 div.keret
 {
     width: 960px;

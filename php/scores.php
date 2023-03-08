@@ -3,7 +3,7 @@
 <?php
     include "connect.php";
 
-    $sql = "SELECT * FROM 'classic'";
+    $sql = "SELECT * FROM classic";
     $result = $conn -> query($sql);
 ?>
 
@@ -22,7 +22,6 @@
             <tr>
                 <td>{$row['username']}</td>
                 <td>{$row['level']}</td>
-                <td>{$row['lives']}</td>
                 <td>{$row['score']}</td>
             </tr>
             ");
@@ -30,7 +29,7 @@
 </table>
 
 <?php
-    $sql = "SELECT * FROM 'time'";
+    $sql = "SELECT * FROM time";
     $result = $conn -> query($sql);
 ?>
 

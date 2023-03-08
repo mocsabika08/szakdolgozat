@@ -152,6 +152,8 @@ function BrickCollision(){
 
 function Loose(){
     run = false;
+    var ClassicAdd = "<?php ClassicAdd('admin', "+level+", "+score+"); ?>";
+    //document.write(" <?php ClassicAdd('admin', "+level+", "+score+"); ?> ");
     ctx.clearRect(0, 0, cvs.width, cvs.height);
     ctx.fillStyle = "black";
     ctx.fillRect(295, 255, 210, 90);
