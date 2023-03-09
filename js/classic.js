@@ -158,16 +158,15 @@ function Lose(){
 
     $(document).ready(function(){
         $.ajax({
-            type: "POST",
-            url: 'insert.php',
+            method:"POST",
+            url: "insert.php",
             data:{
-                username : "admin",
-                level : level,
-                score : score
+                username:'admin',
+                level:level,
+                score:score
             },
-            success: function(data)
-            {
-                alert("success!");
+            success: function(){
+                alert("jó");
             }
         });
     });
