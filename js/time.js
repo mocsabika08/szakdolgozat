@@ -1,7 +1,3 @@
-var script = document.createElement('script');
-script.src = 'js/jquery-3.6.3.min.js';
-document.getElementsByTagName('head')[0].appendChild(script);
-
 const cvs = document.getElementById("arkanoid");
 const ctx = cvs.getContext("2d");
 const paddle = {
