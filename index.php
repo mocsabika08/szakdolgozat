@@ -12,9 +12,15 @@
       <div class='belso felso'>Arkanoid klón</div>
       <div class='belso bal'>
           <a href='?p=main'>Főmenü</a>
-          <a href='?p=scores'>Ranglista</a>
-          <a href='?p=classic'>Klasszikus mód</a>
-          <a href='?p=time'>Időfutam mód</a>
+          <?php
+            if (isset($_COOKIE["username"]))
+            print "
+              <a href='?p=scores'>Ranglista</a>
+              <a href='?p=classic'>Klasszikus mód</a>
+              <a href='?p=time'>Időfutam mód</a>
+            ";
+          ?>
+          
       </div>
 
       <div class='belso jobb'>

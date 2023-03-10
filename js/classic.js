@@ -149,8 +149,13 @@ function BrickCollision(){
     }
 }
 
-function Loose(){
+function Lose(){
     run = false;
+
+    document.cookie = "mode=classic";
+    document.cookie = "level="+level;
+    document.cookie = "score="+score;
+
     ctx.clearRect(0, 0, cvs.width, cvs.height);
     ctx.fillStyle = "black";
     ctx.fillRect(295, 255, 210, 90);
@@ -175,7 +180,7 @@ function Win(){
 
 function RunCheck(){
     if (lives <= 0)
-        Loose();
+        Lose();
     else{
         for (let i = 0; i < brick.row; i++){
             for (let j = 0; j < brick.column; j++){
