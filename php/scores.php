@@ -11,7 +11,7 @@
     <?php
         include "insert.php";
 
-        $sql = "SELECT * FROM `classic`";
+        $sql = "SELECT * FROM `classic` ORDER BY `score` DESC";
         $result = $conn -> query($sql);
         while ($row = $result -> fetch_assoc())
             print ("
@@ -33,7 +33,7 @@
         <th>Életek</th>
     </head>
     <?php
-        $sql = "SELECT * FROM `time`";
+        $sql = "SELECT * FROM `time` ORDER BY `level` DESC";
         $result = $conn -> query($sql);
         while ($row = $result -> fetch_assoc())
             print ("

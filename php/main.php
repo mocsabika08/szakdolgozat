@@ -1,6 +1,9 @@
 <h2>Főmenü</h2>
 
 <?php
+
+    include "insert.php";
+
     if (!empty($_GET['username']) && !empty($_GET['password']))
     {
         $cookie_name = "username";
@@ -14,7 +17,7 @@
         header("location:./");
     }
 
-    if (isset($_COOKIE['username']))
+    if ($isLoginOK)
     {
         print "
             <p>Üdvözöllek ". $_COOKIE['username'] ." az Arkanoid játékomban!</p>
@@ -41,4 +44,5 @@
             </form>
         ";
     }
+
 ?>
