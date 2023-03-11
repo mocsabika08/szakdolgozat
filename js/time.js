@@ -29,10 +29,10 @@ let run = true;
 let bricks = [];
 let level = 1;
 let lives = 3;
-let millisecond = 5;
 let leftArrow = false;
 let rightArrow = false;
 
+let millisecond = 5;
 let timer = setInterval(Timer, 1000);
 
 function PaddleCollision(){
@@ -42,7 +42,6 @@ function PaddleCollision(){
         let a = point * (Math.PI/3);
         ball.dx = ball.s * Math.sin(a);
         ball.dy = -ball.s * Math.cos(a);
-        multiplier = 1;
     }
 }
 
@@ -148,9 +147,12 @@ function BrickCollision(){
 }
 
 function Lose(){
-    debugger;
     run = false;
-    clearInterval(timer);
+
+    document.cookie = "mode=time";
+    document.cookie = "level="+level;
+    document.cookie = "score="+score;
+
     ctx.clearRect(0, 0, cvs.width, cvs.height);
     ctx.fillStyle = "black";
     ctx.fillRect(295, 255, 210, 90);
@@ -159,6 +161,8 @@ function Lose(){
     ctx.fillStyle = "white"
     ctx.font = "30px Comic Sans MS";
     ctx.fillText("VESZTETTÉL", 303, 310);
+
+    clearInterval(timer);
 }
 
 function Win(){

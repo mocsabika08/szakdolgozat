@@ -1,4 +1,5 @@
 <?php
+
 	include "connect.php";
 
 	if (isset($_COOKIE['username']) && isset($_COOKIE['mode']) && isset($_COOKIE['level']) && isset($_COOKIE['score']))
@@ -25,4 +26,5 @@
 							VALUES ('$username', '$level', '$score')");
 		}
 	}
+	
 ?>

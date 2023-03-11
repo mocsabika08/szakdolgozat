@@ -13,7 +13,8 @@
     <div class='belso bal'>
         <a href='?p=main'>Főmenü</a>
         <?php
-          include "php/insert.php";
+          include "php/database.php";
+          include "php/connect.php";
           $isLoginOK = false;
           if (isset($_COOKIE['username']) && isset($_COOKIE['password']))
           {
@@ -42,6 +43,7 @@
               {
                   $conn -> query("INSERT INTO `player` (`username`, `password`)
                                   VALUES ('$username', '$password')");
+                  header("location:./");
               }
           }
           if ($isLoginOK)

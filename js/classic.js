@@ -28,11 +28,12 @@ const brick = {
 let run = true;
 let bricks = [];
 let lives = 3;
-let score = 0;
 let level = 1;
-let multiplier = 1;
 let leftArrow = false;
 let rightArrow = false;
+
+let multiplier = 1;
+let score = 0;
 
 function PaddleCollision(){
     if (ball.y>paddle.y && ball.y<paddle.y+paddle.height && ball.x>paddle.x && ball.x<paddle.x+paddle.width){
@@ -96,6 +97,7 @@ function WallCollision(){
         document.getElementById("lives").innerHTML = "Életek: " + lives;
         BallReset();
         PaddleReset();
+        multiplier = 1;
     }
 }
 
@@ -141,8 +143,8 @@ function BrickCollision(){
                     bricks[i][j].status = false;
                     ball.dy = -ball.dy;
                     score += level * multiplier * lives * 5;
-                    document.getElementById("score").innerHTML = "Pontszám: " + score;
                     multiplier += 1;
+                    document.getElementById("score").innerHTML = "Pontszám: " + score;
                 }
             }
         }
