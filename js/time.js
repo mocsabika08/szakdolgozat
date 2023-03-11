@@ -151,7 +151,9 @@ function Lose(){
 
     document.cookie = "mode=time";
     document.cookie = "level="+level;
-    document.cookie = "score="+score;
+    //document.cookie = "score="+score;
+
+    debugger;
 
     ctx.clearRect(0, 0, cvs.width, cvs.height);
     ctx.fillStyle = "black";
@@ -178,7 +180,7 @@ function Win(){
 }
 
 function RunCheck(){
-    if (lives <= 0)
+    if (lives <= 0 || millisecond <= 0)
         Lose();
     else{
         for (let i = 0; i < brick.row; i++){
@@ -224,7 +226,6 @@ function Timer()
     millisecond--;
     if (millisecond < 0)
     {
-        Lose();
         millisecond = 0;
     }
     document.getElementById("second").innerHTML = Format(millisecond % 60);
