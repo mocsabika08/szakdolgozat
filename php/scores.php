@@ -1,47 +1,70 @@
+<style>
+    .scorecontainer
+    {
+        width:400px;
+    }
+    .classictable
+    {
+        text-align: left;
+        display: inline-block;
+    }
+    .timetable
+    {
+        text-align: right;
+        display: inline-block;
+    }
+</style>
+
 <h2>Ranglista</h2>
 
-<h3>Klasszikus mód</h3>
+<div class="scorecontainer">
 
-<table>
-    <head>
-        <th>Játékos</th>
-        <th>Szint</th>
-        <th>Pontszám</th>
-    </head>
-    <?php
-        include "insert.php";
+    <div class="classictable">
+        <h3>Klasszikus mód</h3>
+        <table>
+            <head>
+                <th>Játékos</th>
+                <th>Szint</th>
+                <th>Pontszám</th>
+            </head>
+            <?php
+                include "insert.php";
 
-        $sql = "SELECT * FROM `classic` ORDER BY `score` DESC";
-        $result = $conn -> query($sql);
-        while ($row = $result -> fetch_assoc())
-            print ("
-            <tr>
-                <td>{$row['username']}</td>
-                <td>{$row['level']}</td>
-                <td>{$row['score']}</td>
-            </tr>
-            ");
-    ?>
-</table>
+                $sql = "SELECT * FROM `classic` ORDER BY `score` DESC";
+                $result = $conn -> query($sql);
+                while ($row = $result -> fetch_assoc())
+                    print ("
+                    <tr>
+                        <td>{$row['username']}</td>
+                        <td>{$row['level']}</td>
+                        <td>{$row['score']}</td>
+                    </tr>
+                    ");
+            ?>
+        </table>
+    </div>
 
-<h3>Időfutam mód</h3>
+    <div class="timetable">
+        <h3>Időfutam mód</h3>
+        <table>
+            <head>
+                <th>Játékos</th>
+                <th>Szint</th>
+                <th>Életek</th>
+            </head>
+            <?php
+                $sql = "SELECT * FROM `time` ORDER BY `level` DESC";
+                $result = $conn -> query($sql);
+                while ($row = $result -> fetch_assoc())
+                    print ("
+                    <tr>
+                        <td>{$row['username']}</td>
+                        <td>{$row['level']}</td>
+                        <td>{$row['lives']}</td>
+                    </tr>
+                    ");
+            ?>
+        </table>
+    </div>
 
-<table>
-    <head>
-        <th>Játékos</th>
-        <th>Szint</th>
-        <th>Életek</th>
-    </head>
-    <?php
-        $sql = "SELECT * FROM `time` ORDER BY `level` DESC";
-        $result = $conn -> query($sql);
-        while ($row = $result -> fetch_assoc())
-            print ("
-            <tr>
-                <td>{$row['username']}</td>
-                <td>{$row['level']}</td>
-                <td>{$row['lives']}</td>
-            </tr>
-            ");
-    ?>
-</table>
+</div>

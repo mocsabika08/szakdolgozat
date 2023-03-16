@@ -12,58 +12,64 @@
 html
 {
     background-color: black;
+    font-family:'Segoe UI';
+    font-size: 18px;
 }
 
-div.keret
+h1, h2
 {
-    width: 960px;
-    margin: 24px auto;
+    text-align: center;
 }
 
-div.belso
+.container
+{
+    position: relative;
+    width: 960px;
+    margin: auto;
+}
+
+.inner
 {
     margin: 24px;
     background-color: #222;
     border: solid 3px #00CC00;
-    font-family: Verdana;
     color: #00CC00;
 }
 
-div.felso
+.upper
 {
+    width: 800px;
     padding: 32px;
     font-size: 32px;
     text-align: center;
     font-weight: bold;
 }
 
-div.bal
+.left
 {
+    position: absolute;
+    left: -230px;
     width: 200px;
-    height: 320px;
-    float: left;
+    height: 278px;
     margin-top: 0;
-    padding: 24px 0 48px 0;
+    padding: 24px 0 24px 0;
     text-align: center;
 }
 
-div.jobb
+.right
 {
     width: 800px;
     min-height: 600px;
-    margin-left: 248px;
     padding: 32px;
     line-height: 18px;
-    font-size: 12px;
     text-align: justify;
 }
 
-div.bal a
+.left a
 {
     display: block;
     text-decoration: none;
     border: solid 3px #00CC00;
-    border-radius: 8px;
     margin: 8px 24px;
     padding: 8px;
     background-color: #222;
@@ -71,9 +77,8 @@ div.bal a
     font-weight: bold;
 }
 
-div.bal a:hover
+.left a:hover
 {
     background-color: #00CC00;
-    border: solid 3px #00CC00;
     color: #222;
 }

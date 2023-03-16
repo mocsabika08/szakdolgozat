@@ -8,9 +8,9 @@
 </head>
 
 <body>
-  <div class='keret'>
-    <div class='belso felso'>Arkanoid klón</div>
-    <div class='belso bal'>
+  <div class='container'>
+    <div class='inner upper'>Arkanoid klón</div>
+    <div class='inner left'>
         <a href='?p=main'>Főmenü</a>
         <?php
           include "php/database.php";
@@ -57,7 +57,7 @@
         
     </div>
 
-    <div class='belso jobb'>
+    <div class='inner right'>
       <?php
         if (isset($_GET['p']))
           $p = $_GET['p'];
