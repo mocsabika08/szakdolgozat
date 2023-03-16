@@ -32,7 +32,7 @@ let lives = 3;
 let leftArrow = false;
 let rightArrow = false;
 
-let millisecond = 5;
+let millisecond = 300;
 let timer = setInterval(Timer, 1000);
 
 function PaddleCollision(){

@@ -9,26 +9,24 @@
     display:inline;
 }
 
-table
+html
 {
-    display: inline;
+    background-color: black;
 }
 
 div.keret
 {
     width: 960px;
-    border: solid 0px gray;
     margin: 24px auto;
 }
 
 div.belso
 {
     margin: 24px;
-    background-color: #DDD;
-    border: solid 2px #448;
-    border-radius:  12px;
+    background-color: #222;
+    border: solid 3px #00CC00;
     font-family: Verdana;
-    color: #D60;
+    color: #00CC00;
 }
 
 div.felso
@@ -64,19 +62,18 @@ div.bal a
 {
     display: block;
     text-decoration: none;
-    border: solid 1px #224;
+    border: solid 3px #00CC00;
     border-radius: 8px;
     margin: 8px 24px;
     padding: 8px;
-    background-color: #BBB;
-    color: #224;
-    font-size: 12px;
+    background-color: #222;
+    color: #00CC00;
     font-weight: bold;
 }
 
 div.bal a:hover
 {
-    background-color: #FFF;
-    border: solid 1px #22A;
-    color: #22A;
+    background-color: #00CC00;
+    border: solid 3px #00CC00;
+    color: #222;
 }
