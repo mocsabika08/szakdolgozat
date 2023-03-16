@@ -1,20 +1,3 @@
-<style>
-    .scorecontainer
-    {
-        width:400px;
-    }
-    .classictable
-    {
-        text-align: left;
-        display: inline-block;
-    }
-    .timetable
-    {
-        text-align: right;
-        display: inline-block;
-    }
-</style>
-
 <h2>Ranglista</h2>
 
 <div class="scorecontainer">
