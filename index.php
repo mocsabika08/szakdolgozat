@@ -9,7 +9,7 @@
 
 <body>
   <div class='container'>
-    <div class='inner upper'>Arkanoid klón</div>
+    <div class='inner upper'>ARKANOID</div>
     <div class='inner left'>
         <a href='?p=main'>Főmenü</a>
         <?php

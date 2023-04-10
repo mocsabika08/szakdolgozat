@@ -1,4 +1,4 @@
-<h2>Klasszikus mód</h2>
+<h2>Időfutam mód</h2>
 
 <?php include "insert.php"; ?>
 

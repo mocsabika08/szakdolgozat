@@ -139,7 +139,8 @@ function BrickCollision(){
         for (let j = 0; j < brick.column; j++){
             let temp = bricks[i][j];
             if (temp.status){
-                if (ball.x+ball.r>temp.x && ball.x-ball.r<temp.x+brick.width && ball.y+ball.r>temp.y && ball.y-ball.r<temp.y+brick.height){
+                if (ball.x+ball.r>temp.x && ball.x-ball.r<temp.x+brick.width && ball.y+ball.r>temp.y && ball.y-ball.r<temp.y+brick.height)
+                {
                     bricks[i][j].status = false;
                     ball.dy = -ball.dy;
                     score += level * multiplier * lives * 5;

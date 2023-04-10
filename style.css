@@ -9,16 +9,46 @@
     display:inline;
 }
 
+#loginform
+{
+    margin-left: 260px;
+    position: absolute;
+}
+
 html
 {
     background-color: black;
     font-family:'Segoe UI';
     font-size: 18px;
+    font-weight: bold;
 }
 
 h1, h2
 {
     text-align: center;
+}
+
+h2
+{
+    margin-top: 0px;
+}
+
+button
+{
+    display: block;
+    text-decoration: none;
+    border: solid 3px #00CC00;
+    padding: 8px;
+    background-color: #222;
+    color: #00CC00;
+    font-weight: bold;
+    margin:auto;
+}
+
+button:hover
+{
+    background-color: #00CC00;
+    color: #222;
 }
 
 .container
@@ -86,16 +116,20 @@ h1, h2
 .scorecontainer
 {
     width:400px;
+    margin:auto;
 }
 
-.classictable
+.ranktable
 {
-    text-align: left;
-    display: inline-block;
+    text-align: center;
+    min-height: 113px;
+    margin: auto;
 }
 
-.timetable
+.ranktable table, .ranktable th, .ranktable td
 {
-    text-align: right;
-    display: inline-block;
+    margin: auto;
+    border: solid 3px #00CC00;
+    border-collapse: collapse;
+    min-width:90px;
 }

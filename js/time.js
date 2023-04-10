@@ -149,12 +149,6 @@ function BrickCollision(){
 function Lose(){
     run = false;
 
-    document.cookie = "mode=time";
-    document.cookie = "level="+level;
-    //document.cookie = "score="+score;
-
-    debugger;
-
     ctx.clearRect(0, 0, cvs.width, cvs.height);
     ctx.fillStyle = "black";
     ctx.fillRect(295, 255, 210, 90);
@@ -168,20 +162,42 @@ function Lose(){
 }
 
 function Win(){
+    debugger;
     if (ball.s <= 8)
         ball.s += 1;
     if (brick.row <= 10)
         brick.row++;
     level++;
-    document.getElementById("prog").innerHTML = "Szint: " + level;
+    document.getElementById("level").innerHTML = "Szint: " + level;
     BrickReset();
     BallReset();
     PaddleReset();
 }
 
+function TimeOut(){
+    run = false;
+
+    document.cookie = "mode=time";
+    document.cookie = "level="+level;
+    document.cookie = "lives="+lives;
+
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
+    ctx.fillStyle = "black";
+    ctx.fillRect(295, 255, 210, 90);
+    ctx.strokeStyle = "white";
+    ctx.strokeRect(295, 255, 210, 90);
+    ctx.fillStyle = "white"
+    ctx.font = "30px Comic Sans MS";
+    ctx.fillText("VÉGE", 360, 312);
+
+    clearInterval(timer);
+}
+
 function RunCheck(){
-    if (lives <= 0 || millisecond <= 0)
+    if (lives <= 0)
         Lose();
+    else if (millisecond <= 0)
+        TimeOut();
     else{
         for (let i = 0; i < brick.row; i++){
             for (let j = 0; j < brick.column; j++){

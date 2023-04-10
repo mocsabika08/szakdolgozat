@@ -2,7 +2,7 @@
 
 <div class="scorecontainer">
 
-    <div class="classictable">
+    <div class="ranktable">
         <h3>Klasszikus mód</h3>
         <table>
             <head>
@@ -27,7 +27,7 @@
         </table>
     </div>
 
-    <div class="timetable">
+    <div class="ranktable">
         <h3>Időfutam mód</h3>
         <table>
             <head>
